@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+.logo {
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+nav {
+    display: flex; /* Logo e Lista um do lado do outro */
+    justify-content: space-around; /* Faz com que o espaço ao redor seja a metade do espaço entre eles */
+    align-items: center; /* Alinhar ambos verticalmente */
+    font-family: system-ui, -apple-system, 'Helvetica Neue', 'Arial', sans-serif;
+    background: #23232e;
+    height: 8vh; /* vh = viewport height, unidade responsiva que se adapta a altura da janela (100vh = janela inteira) */
+}
+
+main {
+    background: url("images/bg.jpg") no-repeat center center;
+    background-size: cover;
+    height: 92vh;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+}
+
+.nav-list li {
+    letter-spacing: 3px;
+    margin-left: 32px;
+}
+
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.mobile-menu div {
+    width: 32px;
+    height: 2px;
+    background: #fff;
+    margin: 8px;
+    transition: .3s;
+}
+
+@media (max-width: 999px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .nav-list {
+        position: absolute; /* Podemos posicionar nossa navegação onde quizermos */
+        top: 8vh; /* ficar logo abaixo do header */
+        right: 0; /* já que o menu ficará na direita */
+        width: 50vw;
+        height: 92vh;
+        background: #23232e;
+        flex-direction: column; /* nav-list ja possuia display flex, entao podemos mudar o flex-direction para colunas */
+        align-items: center;
+        justify-content: space-around; /* espalha os itens pelo espaço disponível */
+        transform: translateX(100%); /* faz a navegação ir para fora do body (gera barra de navegação que é corrigida com overflow-x hidden) */
+        transition: transform 0.3s ease-in; /* ease-in representa uma entrada suave */
+    }
+
+    .nav-list li {
+        margin-left: 0; /* tirar essa margen esquerda para ficar exatamente no centro */
+        opacity: 0;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+}
+
+.nav-list.active {
+    transform: translateX(0);
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }    
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobile-menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2 {
+    opacity: 0;
+}
+
+.mobile-menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+    
+}
